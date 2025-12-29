@@ -116,6 +116,7 @@ border-radius:50%;
 border:4px solid var(--accent);
 margin-bottom:22px;
 object-fit:cover;
+transition: all 0.5s ease;
 }
 
 header h1{
@@ -236,9 +237,9 @@ font-weight:600;
 transition: all 0.3s ease;
 }
 
-/* HOVER EFFECTS FOR MAIN ELEMENTS ONLY */
-h1:hover, h2:hover, h3:hover, .project-card:hover, .btn:hover, .insta-btn:hover, .socials a:hover, .skills-box span:hover{
-transform: translateY(-5px) scale(1.05);
+/* HOVER EFFECTS FOR MAIN ELEMENTS ONLY (Zoom + Lift) */
+h1:hover, h2:hover, h3:hover, .project-card:hover, .btn:hover, .insta-btn:hover, .socials a:hover, .skills-box span:hover, .profile-img:hover{
+transform: translateY(-5px) scale(1.05); /* Zoom-in + lift */
 color: var(--accent);
 box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
@@ -269,11 +270,11 @@ font-size:14px;
 </div>
 </nav>
 
-<header id="home" class="reveal-top">
-<img src="profile.jpg" class="profile-img" alt="Profile">
-<h1>Sayed Tasleem Shah</h1>
-<div class="typing" id="typing"></div>
-<a href="resume.pdf" class="btn" download>Download Resume</a>
+<header id="home">
+<img src="profile.jpg" class="profile-img reveal-top" alt="Profile">
+<h1 class="reveal-top">Sayed Tasleem Shah</h1>
+<div class="typing reveal-top" id="typing"></div>
+<a href="resume.pdf" class="btn reveal-top" download>Download Resume</a>
 </header>
 
 <section id="about" class="about reveal-left">
@@ -299,15 +300,15 @@ networking fundamentals, and system defense.
 <section id="projects" class="reveal-bottom">
 <h2>Projects</h2>
 <div class="projects">
-<div class="project-card">
+<div class="project-card reveal-bottom">
 <h3>Password Strength Checker</h3>
 <p>Security based password evaluation tool.</p>
 </div>
-<div class="project-card">
+<div class="project-card reveal-bottom">
 <h3>Portfolio Website</h3>
 <p>Responsive professional portfolio.</p>
 </div>
-<div class="project-card">
+<div class="project-card reveal-bottom">
 <h3>Networking Lab</h3>
 <p>Hands on routing and troubleshooting.</p>
 </div>
@@ -317,9 +318,9 @@ networking fundamentals, and system defense.
 <section class="reveal-bottom">
 <h2>Profiles</h2>
 <div class="socials">
-<a href="https://github.com/" target="_blank">GitHub</a>
-<a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank">LinkedIn</a>
-<a href="resume.pdf" download>Resume</a>
+<a href="https://github.com/" target="_blank" class="reveal-bottom">GitHub</a>
+<a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank" class="reveal-bottom">LinkedIn</a>
+<a href="resume.pdf" download class="reveal-bottom">Resume</a>
 </div>
 </section>
 
@@ -328,7 +329,7 @@ networking fundamentals, and system defense.
 <p>Email. taslymkazmi@gmail.com</p>
 <p>WhatsApp. 03059873511</p>
 <p>Location. Hayatabad, Pakistan</p>
-<a href="https://www.instagram.com/taslymkazmi" target="_blank" class="insta-btn">
+<a href="https://www.instagram.com/taslymkazmi" target="_blank" class="insta-btn reveal-bottom">
 Follow on Instagram
 </a>
 </section>
@@ -362,11 +363,12 @@ setTimeout(typing,del?70:110);
 }
 typing();
 
+// ScrollReveal animations
 ScrollReveal({
 distance:"60px",
 duration:1400,
 delay:200,
-reset:false
+reset:true
 });
 
 ScrollReveal().reveal(".reveal-top",{origin:"top"});
