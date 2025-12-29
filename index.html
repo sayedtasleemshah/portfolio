@@ -137,6 +137,7 @@ color:#000;
 border-radius:30px;
 text-decoration:none;
 font-weight:700;
+transition: all 0.3s ease;
 }
 
 /* SECTIONS */
@@ -151,6 +152,7 @@ text-align:center;
 font-size:30px;
 margin-bottom:35px;
 color:var(--accent);
+transition: all 0.3s ease;
 }
 
 /* ABOUT */
@@ -158,6 +160,7 @@ color:var(--accent);
 text-align:center;
 max-width:800px;
 margin:auto;
+transition: all 0.3s ease;
 }
 
 /* SKILLS */
@@ -173,6 +176,7 @@ background:var(--bg-card);
 padding:12px 24px;
 border-radius:30px;
 font-size:14px;
+transition: all 0.3s ease;
 }
 
 /* PROJECTS */
@@ -186,6 +190,15 @@ gap:22px;
 background:var(--bg-card);
 padding:28px;
 border-radius:18px;
+transition: all 0.3s ease;
+}
+
+.project-card h3{
+transition: all 0.3s ease;
+}
+
+.project-card p{
+transition: all 0.3s ease;
 }
 
 /* SOCIAL */
@@ -203,12 +216,14 @@ background:var(--bg-card);
 color:var(--accent);
 text-decoration:none;
 font-weight:600;
+transition: all 0.3s ease;
 }
 
 /* CONTACT */
 .contact p{
 text-align:center;
 margin:8px 0;
+transition: all 0.3s ease;
 }
 
 .insta-btn{
@@ -220,6 +235,14 @@ color:white;
 border-radius:30px;
 text-decoration:none;
 font-weight:600;
+transition: all 0.3s ease;
+}
+
+/* HOVER EFFECTS */
+h1:hover, h2:hover, h3:hover, p:hover, .skills-box span:hover, .project-card:hover, .socials a:hover, .insta-btn:hover, .btn:hover{
+transform: translateY(-5px) scale(1.05);
+color:var(--accent);
+box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 /* FOOTER */
@@ -298,7 +321,7 @@ networking fundamentals, and system defense.
 <div class="socials">
 <a href="https://github.com/" target="_blank">GitHub</a>
 <a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank">LinkedIn</a>
-<a href="resume.pdf" download>Resume</a>a>
+<a href="resume.pdf" download>Resume</a>
 </div>
 </section>
 
