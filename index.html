@@ -106,7 +106,7 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding-top:90px;
-background:linear-gradient(135deg,#1e3a8a,#1e40af);
+background:linear-gradient(135deg,#0f172a,#1e293b); /* Darker gradient */
 }
 
 .profile-img{
@@ -120,6 +120,7 @@ object-fit:cover;
 
 header h1{
 font-size:42px;
+transition: all 0.3s ease;
 }
 
 .typing{
@@ -159,8 +160,6 @@ transition: all 0.3s ease;
 .about p{
 text-align:center;
 max-width:800px;
-margin:auto;
-transition: all 0.3s ease;
 }
 
 /* SKILLS */
@@ -223,7 +222,6 @@ transition: all 0.3s ease;
 .contact p{
 text-align:center;
 margin:8px 0;
-transition: all 0.3s ease;
 }
 
 .insta-btn{
@@ -238,10 +236,10 @@ font-weight:600;
 transition: all 0.3s ease;
 }
 
-/* HOVER EFFECTS */
-h1:hover, h2:hover, h3:hover, p:hover, .skills-box span:hover, .project-card:hover, .socials a:hover, .insta-btn:hover, .btn:hover{
+/* HOVER EFFECTS FOR MAIN ELEMENTS ONLY */
+h1:hover, h2:hover, h3:hover, .project-card:hover, .btn:hover, .insta-btn:hover, .socials a:hover, .skills-box span:hover{
 transform: translateY(-5px) scale(1.05);
-color:var(--accent);
+color: var(--accent);
 box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
