@@ -9,6 +9,9 @@
 
 <script src="https://unpkg.com/scrollreveal"></script>
 
+<!-- FONT AWESOME (FOR ICONS) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 :root{
 --bg-main:#0f172a;
@@ -106,7 +109,7 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding-top:90px;
-background:linear-gradient(135deg,#0f172a,#1e293b); /* Darker gradient */
+background:linear-gradient(135deg,#0f172a,#1e293b);
 }
 
 .profile-img{
@@ -193,14 +196,6 @@ border-radius:18px;
 transition: all 0.3s ease;
 }
 
-.project-card h3{
-transition: all 0.3s ease;
-}
-
-.project-card p{
-transition: all 0.3s ease;
-}
-
 /* SOCIAL */
 .socials{
 display:flex;
@@ -216,6 +211,9 @@ background:var(--bg-card);
 color:var(--accent);
 text-decoration:none;
 font-weight:600;
+display:inline-flex;
+align-items:center;
+gap:8px;
 transition: all 0.3s ease;
 }
 
@@ -237,9 +235,10 @@ font-weight:600;
 transition: all 0.3s ease;
 }
 
-/* HOVER EFFECTS FOR MAIN ELEMENTS ONLY (Zoom + Lift) */
-h1:hover, h2:hover, h3:hover, .project-card:hover, .btn:hover, .insta-btn:hover, .socials a:hover, .skills-box span:hover, .profile-img:hover{
-transform: translateY(-5px) scale(1.05); /* Zoom-in + lift */
+/* HOVER EFFECTS */
+h1:hover, h2:hover, h3:hover, .project-card:hover, .btn:hover,
+.insta-btn:hover, .socials a:hover, .skills-box span:hover, .profile-img:hover{
+transform: translateY(-5px) scale(1.05);
 color: var(--accent);
 box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
@@ -256,6 +255,7 @@ font-size:14px;
 
 <body>
 
+<!-- NAVBAR -->
 <nav>
 <div class="nav-wrap">
 <div class="nav-logo">Tasleem Kazmi</div>
@@ -270,6 +270,7 @@ font-size:14px;
 </div>
 </nav>
 
+<!-- HEADER -->
 <header id="home">
 <img src="profile.jpg" class="profile-img reveal-top" alt="Profile">
 <h1 class="reveal-top">Sayed Tasleem Shah</h1>
@@ -277,6 +278,7 @@ font-size:14px;
 <a href="resume.pdf" class="btn reveal-top" download>Download Resume</a>
 </header>
 
+<!-- ABOUT -->
 <section id="about" class="about reveal-left">
 <h2>About Me</h2>
 <p>
@@ -285,6 +287,7 @@ networking fundamentals, and system defense.
 </p>
 </section>
 
+<!-- SKILLS -->
 <section id="skills" class="reveal-right">
 <h2>Skills</h2>
 <div class="skills-box">
@@ -297,6 +300,7 @@ networking fundamentals, and system defense.
 </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects" class="reveal-bottom">
 <h2>Projects</h2>
 <div class="projects">
@@ -315,14 +319,27 @@ networking fundamentals, and system defense.
 </div>
 </section>
 
+<!-- PROFILES (UPDATED WITH ICONS + TIKTOK) -->
 <section class="reveal-bottom">
 <h2>Profiles</h2>
 <div class="socials">
-<a href="https://github.com/sayedtasleemshah" target="_blank" class="reveal-bottom">GitHub</a>
-<a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank" class="reveal-bottom">LinkedIn</a>
+
+<a href="https://github.com/sayedtasleemshah" target="_blank" class="reveal-bottom">
+<i class="fa-brands fa-github"></i> GitHub
+</a>
+
+<a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank" class="reveal-bottom">
+<i class="fa-brands fa-linkedin"></i> LinkedIn
+</a>
+
+<a href="https://www.tiktok.com/@elysian_112?_r=1&_t=ZS-92enAeuO1cQ" target="_blank" class="reveal-bottom">
+<i class="fa-brands fa-tiktok"></i> TikTok
+</a>
+
 </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="contact reveal-bottom">
 <h2>Contact</h2>
 <p>Email. taslymkazmi@gmail.com</p>
@@ -348,9 +365,7 @@ const roles=[
 "IT Support Learner"
 ];
 
-let r=0;
-let c=0;
-let del=false;
+let r=0,c=0,del=false;
 
 function typing(){
 const t=roles[r];
@@ -362,7 +377,6 @@ setTimeout(typing,del?70:110);
 }
 typing();
 
-// ScrollReveal animations
 ScrollReveal({
 distance:"60px",
 duration:1400,
