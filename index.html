@@ -1,394 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sayed Tasleem Shah. Cybersecurity Enthusiast and IT Support Learner.">
-<meta name="author" content="Sayed Tasleem Shah">
-<title>Sayed Tasleem Shah | Cybersecurity Portfolio</title>
-
-<script src="https://unpkg.com/scrollreveal"></script>
-
-<!-- FONT AWESOME (FOR ICONS) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-:root{
---bg-main:#0f172a;
---bg-dark:#020617;
---bg-card:#1e293b;
---accent:#38bdf8;
---accent-dark:#2563eb;
---text-main:#e5e7eb;
---text-soft:#cbd5f5;
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:system-ui,sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:var(--bg-main);
-color:var(--text-main);
-line-height:1.6;
-}
-
-/* NAVBAR */
-nav{
-position:fixed;
-width:100%;
-top:0;
-background:rgba(2,6,23,0.9);
-padding:14px 20px;
-z-index:1000;
-}
-
-.nav-wrap{
-display:flex;
-justify-content:space-between;
-align-items:center;
-max-width:1100px;
-margin:auto;
-}
-
-.nav-logo{
-color:var(--accent);
-font-weight:700;
-}
-
-nav ul{
-display:flex;
-gap:25px;
-list-style:none;
-}
-
-nav a{
-color:var(--accent);
-text-decoration:none;
-font-weight:600;
-}
-
-.menu-btn{
-display:none;
-font-size:26px;
-color:var(--accent);
-cursor:pointer;
-}
-
-/* MOBILE NAV */
-@media(max-width:768px){
-nav ul{
-position:absolute;
-top:60px;
-left:0;
-width:100%;
-background:var(--bg-dark);
-flex-direction:column;
-align-items:center;
-display:none;
-padding:20px 0;
-}
-nav ul.active{
-display:flex;
-}
-.menu-btn{
-display:block;
-}
-}
-
-/* HEADER */
-header{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding-top:90px;
-background:linear-gradient(135deg,#0f172a,#1e293b);
-}
-
-.profile-img{
-width:160px;
-height:160px;
-border-radius:50%;
-border:4px solid var(--accent);
-margin-bottom:22px;
-object-fit:cover;
-transition: all 0.5s ease;
-}
-
-header h1{
-font-size:42px;
-transition: all 0.3s ease;
-}
-
-.typing{
-margin-top:10px;
-font-size:18px;
-color:var(--text-soft);
-}
-
-.btn{
-display:inline-block;
-margin-top:18px;
-padding:12px 28px;
-background:var(--accent);
-color:#000;
-border-radius:30px;
-text-decoration:none;
-font-weight:700;
-transition: all 0.3s ease;
-}
-
-/* SECTIONS */
-section{
-padding:90px 20px;
-max-width:1050px;
-margin:auto;
-}
-
-h2{
-text-align:center;
-font-size:30px;
-margin-bottom:35px;
-color:var(--accent);
-transition: all 0.3s ease;
-}
-
-/* ABOUT */
-.about p{
-text-align:center;
-max-width:800px;
-}
-
-/* SKILLS */
-.skills-box{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:16px;
-}
-
-.skills-box span{
-background:var(--bg-card);
-padding:12px 24px;
-border-radius:30px;
-font-size:14px;
-transition: all 0.3s ease;
-}
-
-/* PROJECTS */
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:22px;
-}
-
-.project-card{
-background:var(--bg-card);
-padding:28px;
-border-radius:18px;
-transition: all 0.3s ease;
-}
-
-/* SOCIAL */
-.socials{
-display:flex;
-justify-content:center;
-gap:20px;
-margin-top:20px;
-}
-
-.socials a{
-padding:10px 22px;
-border-radius:25px;
-background:var(--bg-card);
-color:var(--accent);
-text-decoration:none;
-font-weight:600;
-display:inline-flex;
-align-items:center;
-gap:8px;
-transition: all 0.3s ease;
-}
-
-/* CONTACT */
-.contact p{
-text-align:center;
-margin:8px 0;
-}
-
-.insta-btn{
-display:inline-block;
-margin-top:15px;
-padding:11px 26px;
-background:#E1306C;
-color:white;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-transition: all 0.3s ease;
-}
-
-/* HOVER EFFECTS */
-h1:hover, h2:hover, h3:hover, .project-card:hover, .btn:hover,
-.insta-btn:hover, .socials a:hover, .skills-box span:hover, .profile-img:hover{
-transform: translateY(-5px) scale(1.05);
-color: var(--accent);
-box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:22px;
-background:var(--bg-dark);
-font-size:14px;
-}
-</style>
-</head>
-
-<body>
-
-<!-- NAVBAR -->
-<nav>
-<div class="nav-wrap">
-<div class="nav-logo">Tasleem Kazmi</div>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<ul id="menu">
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</div>
-</nav>
-
-<!-- HEADER -->
-<header id="home">
-<img src="profile.jpg" class="profile-img reveal-top" alt="Profile">
-<h1 class="reveal-top">Sayed Tasleem Shah</h1>
-<div class="typing reveal-top" id="typing"></div>
-<a href="resume.pdf" class="btn reveal-top" download>Download Resume</a>
-</header>
-
-<!-- ABOUT -->
-<section id="about" class="about reveal-left">
-<h2>About Me</h2>
-<p>
-Cybersecurity enthusiast focused on ethical hacking,
-networking fundamentals, and system defense.
-</p>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="reveal-right">
-<h2>Skills</h2>
-<div class="skills-box">
-<span>Cybersecurity Basics</span>
-<span>IT Support</span>
-<span>Networking</span>
-<span>Linux</span>
-<span>Photography</span>
-<span>Video Editing</span>
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="reveal-bottom">
-<h2>Projects</h2>
-<div class="projects">
-<div class="project-card reveal-bottom">
-<h3>Password Strength Checker</h3>
-<p>Security based password evaluation tool.</p>
-</div>
-<div class="project-card reveal-bottom">
-<h3>Portfolio Website</h3>
-<p>Responsive professional portfolio.</p>
-</div>
-<div class="project-card reveal-bottom">
-<h3>Networking Lab</h3>
-<p>Hands on routing and troubleshooting.</p>
-</div>
-</div>
-</section>
-
-<!-- PROFILES (UPDATED WITH ICONS + TIKTOK) -->
-<section class="reveal-bottom">
-<h2>Profiles</h2>
-<div class="socials">
-
-<a href="https://github.com/sayedtasleemshah" target="_blank" class="reveal-bottom">
-<i class="fa-brands fa-github"></i> GitHub
-</a>
-
-<a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank" class="reveal-bottom">
-<i class="fa-brands fa-linkedin"></i> LinkedIn
-</a>
-
-<a href="https://www.tiktok.com/@elysian_112?_r=1&_t=ZS-92enAeuO1cQ" target="_blank" class="reveal-bottom">
-<i class="fa-brands fa-tiktok"></i> TikTok
-</a>
-
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact reveal-bottom">
-<h2>Contact</h2>
-<p>Email. taslymkazmi@gmail.com</p>
-<p>WhatsApp. 03059873511</p>
-<p>Location. Hayatabad, Pakistan</p>
-<a href="https://www.instagram.com/taslymkazmi" target="_blank" class="insta-btn reveal-bottom">
-Follow on Instagram
-</a>
-</section>
-
-<footer>
-<p>© 2025 Sayed Tasleem Shah. All rights reserved.</p>
-</footer>
-
 <script>
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("active");
+function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.classList.toggle("active"); // Toggle menu visibility
 }
 
-const roles=[
-"Cybersecurity Enthusiast",
-"Junior Cybersecurity Specialist",
-"IT Support Learner"
+// Close menu on clicking any menu link
+const menuLinks = document.querySelectorAll("#menu a"); // Select all anchor tags inside the menu
+menuLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        const menu = document.getElementById("menu");
+        menu.classList.remove("active"); // Hide menu
+    });
+});
+
+const roles = [
+    "Cybersecurity Enthusiast",
+    "Junior Cybersecurity Specialist",
+    "IT Support Learner"
 ];
 
-let r=0,c=0,del=false;
+let r = 0, c = 0, del = false;
 
-function typing(){
-const t=roles[r];
-document.getElementById("typing").textContent=
-del?t.substring(0,--c):t.substring(0,++c);
-if(!del && c===t.length){setTimeout(()=>del=true,1000);}
-if(del && c===0){del=false;r=(r+1)%roles.length;}
-setTimeout(typing,del?70:110);
+function typing() {
+    const t = roles[r];
+    document.getElementById("typing").textContent =
+        del ? t.substring(0, --c) : t.substring(0, ++c);
+    if (!del && c === t.length) { setTimeout(() => del = true, 1000); }
+    if (del && c === 0) { del = false; r = (r + 1) % roles.length; }
+    setTimeout(typing, del ? 70 : 110);
 }
 typing();
 
 ScrollReveal({
-distance:"60px",
-duration:1400,
-delay:200,
-reset:true
+    distance: "60px",
+    duration: 1400,
+    delay: 200,
+    reset: true
 });
 
-ScrollReveal().reveal(".reveal-top",{origin:"top"});
-ScrollReveal().reveal(".reveal-left",{origin:"left"});
-ScrollReveal().reveal(".reveal-right",{origin:"right"});
-ScrollReveal().reveal(".reveal-bottom",{origin:"bottom"});
+ScrollReveal().reveal(".reveal-top", { origin: "top" });
+ScrollReveal().reveal(".reveal-left", { origin: "left" });
+ScrollReveal().reveal(".reveal-right", { origin: "right" });
+ScrollReveal().reveal(".reveal-bottom", { origin: "bottom" });
 </script>
-
-</body>
-</html>
