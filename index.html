@@ -1,45 +1,523 @@
-<script>
-function toggleMenu() {
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("active"); // Toggle menu visibility
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sayed Tasleem Shah. Cybersecurity Enthusiast and IT Support Learner.">
+<meta name="author" content="Sayed Tasleem Shah">
+<title>Sayed Tasleem Shah | Cybersecurity Portfolio</title>
+
+<style>
+
+/* ================= ROOT ================= */
+:root{
+--bg-main:#0f172a;
+--bg-dark:#020617;
+--bg-card:#1e293b;
+--accent:#38bdf8;
+--text-main:#e5e7eb;
+--text-soft:#cbd5f5;
+--transition:all .35s ease;
 }
 
-// Close menu on clicking any menu link
-const menuLinks = document.querySelectorAll("#menu a"); // Select all anchor tags inside the menu
-menuLinks.forEach(link => {
-    link.addEventListener("click", () => {
-        const menu = document.getElementById("menu");
-        menu.classList.remove("active"); // Hide menu
-    });
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:system-ui,sans-serif;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+background:var(--bg-main);
+color:var(--text-main);
+overflow-x:hidden;
+}
+
+/* =============== PRELOADER =============== */
+#preloader{
+position:fixed;
+inset:0;
+background:#020617;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:2000;
+transition:.6s ease;
+}
+
+.loader{
+width:45px;
+height:45px;
+border:4px solid #1e293b;
+border-top:4px solid var(--accent);
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg);}
+}
+
+#preloader.hide{
+opacity:0;
+visibility:hidden;
+}
+
+/* =============== PROGRESS BAR =============== */
+#progressBar{
+position:fixed;
+top:0;
+left:0;
+height:4px;
+background:var(--accent);
+width:0%;
+z-index:1500;
+}
+
+/* =============== NAVBAR =============== */
+nav{
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+transition:var(--transition);
+}
+
+nav.scrolled{
+background:rgba(2,6,23,.7);
+backdrop-filter:blur(12px);
+box-shadow:0 8px 25px rgba(0,0,0,.5);
+}
+
+.nav-wrap{
+display:flex;
+justify-content:space-between;
+align-items:center;
+max-width:1100px;
+margin:auto;
+padding:14px 20px;
+}
+
+.nav-logo{
+color:var(--accent);
+font-weight:700;
+}
+
+nav ul{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+nav a{
+color:var(--accent);
+text-decoration:none;
+font-weight:600;
+position:relative;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-4px;
+width:0;
+height:2px;
+background:var(--accent);
+transition:.3s;
+}
+
+nav a:hover::after,
+nav a.active::after{
+width:100%;
+}
+
+/* =============== HAMBURGER =============== */
+.menu-btn{
+display:none;
+flex-direction:column;
+gap:5px;
+cursor:pointer;
+}
+
+.menu-btn span{
+width:26px;
+height:3px;
+background:var(--accent);
+transition:.3s;
+}
+
+.menu-btn.active span:nth-child(1){
+transform:rotate(45deg) translate(5px,5px);
+}
+.menu-btn.active span:nth-child(2){
+opacity:0;
+}
+.menu-btn.active span:nth-child(3){
+transform:rotate(-45deg) translate(6px,-6px);
+}
+
+@media(max-width:768px){
+nav ul{
+position:fixed;
+top:0;
+right:-100%;
+height:100vh;
+width:260px;
+background:var(--bg-dark);
+flex-direction:column;
+align-items:center;
+justify-content:center;
+transition:.4s ease;
+}
+nav ul.active{right:0;}
+.menu-btn{display:flex;}
+body.menu-open{overflow:hidden;}
+}
+
+/* =============== HEADER =============== */
+header{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding-top:90px;
+background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e3a8a);
+background-size:400% 400%;
+animation:gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.profile-img{
+width:160px;
+height:160px;
+border-radius:50%;
+border:4px solid var(--accent);
+margin-bottom:22px;
+transition:var(--transition);
+}
+
+.profile-img:hover{
+transform:scale(1.05);
+}
+
+header h1{
+font-size:42px;
+}
+
+.typing{
+margin-top:10px;
+font-size:18px;
+color:var(--text-soft);
+min-height:24px;
+}
+
+.btn{
+display:inline-block;
+margin-top:18px;
+padding:12px 28px;
+background:var(--accent);
+color:#000;
+border-radius:30px;
+text-decoration:none;
+font-weight:700;
+transition:var(--transition);
+}
+
+.btn:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+/* =============== SECTIONS =============== */
+section{
+padding:90px 20px;
+max-width:1050px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+font-size:30px;
+margin-bottom:35px;
+color:var(--accent);
+}
+
+/* =============== SKILLS =============== */
+.skills-box{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:16px;
+}
+
+.skills-box span{
+background:var(--bg-card);
+padding:12px 24px;
+border-radius:30px;
+transition:var(--transition);
+}
+
+.skills-box span:hover{
+transform:translateY(-4px);
+}
+
+/* =============== PROJECTS =============== */
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:22px;
+}
+
+.project-card{
+background:var(--bg-card);
+padding:28px;
+border-radius:18px;
+transition:var(--transition);
+}
+
+.project-card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,.5);
+}
+
+/* =============== SOCIAL =============== */
+.socials{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.socials a{
+padding:10px 22px;
+border-radius:25px;
+background:var(--bg-card);
+color:var(--accent);
+text-decoration:none;
+transition:var(--transition);
+}
+
+.socials a:hover{
+transform:translateY(-4px);
+}
+
+/* =============== CONTACT =============== */
+.contact p{
+text-align:center;
+margin:8px 0;
+}
+
+.insta-btn{
+display:inline-block;
+margin-top:15px;
+padding:11px 26px;
+background:#E1306C;
+color:white;
+border-radius:30px;
+text-decoration:none;
+transition:var(--transition);
+}
+
+.insta-btn:hover{
+transform:translateY(-4px);
+}
+
+/* =============== FOOTER =============== */
+footer{
+text-align:center;
+padding:22px;
+background:var(--bg-dark);
+}
+
+/* =============== REVEAL =============== */
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="preloader"><div class="loader"></div></div>
+<div id="progressBar"></div>
+
+<nav id="navbar">
+<div class="nav-wrap">
+<div class="nav-logo">Tasleem Kazmi</div>
+
+<div class="menu-btn" id="menuBtn">
+<span></span><span></span><span></span>
+</div>
+
+<ul id="menu">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
+
+<header id="home" class="reveal">
+<img src="profile.jpg" class="profile-img" alt="Sayed Tasleem Shah">
+<h1>Sayed Tasleem Shah</h1>
+<div class="typing" id="typing"></div>
+<a href="resume.pdf" class="btn" download>Download Resume</a>
+</header>
+
+<section id="about" class="about reveal">
+<h2>About Me</h2>
+<p style="text-align:center;max-width:800px;margin:auto;">
+Cybersecurity enthusiast focused on ethical hacking,
+networking fundamentals, and system defense.
+</p>
+</section>
+
+<section id="skills" class="reveal">
+<h2>Skills</h2>
+<div class="skills-box">
+<span>Cybersecurity Basics</span>
+<span>IT Support</span>
+<span>Networking</span>
+<span>Linux</span>
+<span>Photography</span>
+<span>Video Editing</span>
+</div>
+</section>
+
+<section id="projects" class="reveal">
+<h2>Projects</h2>
+<div class="projects">
+<div class="project-card">
+<h3>Password Strength Checker</h3>
+<p>Security based password evaluation tool.</p>
+</div>
+<div class="project-card">
+<h3>Portfolio Website</h3>
+<p>Responsive professional portfolio.</p>
+</div>
+<div class="project-card">
+<h3>Networking Lab</h3>
+<p>Hands on routing and troubleshooting.</p>
+</div>
+</div>
+</section>
+
+<section class="reveal">
+<h2>Profiles</h2>
+<div class="socials">
+<a href="https://github.com/sayedtasleemshah" target="_blank">GitHub</a>
+<a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank">LinkedIn</a>
+<a href="resume.pdf" download>Resume</a>
+</div>
+</section>
+
+<section id="contact" class="contact reveal">
+<h2>Contact</h2>
+<p>Email: taslymkazmi@gmail.com</p>
+<p>WhatsApp: 03059873511</p>
+<p>Location: Hayatabad, Pakistan</p>
+<a href="https://www.instagram.com/taslymkazmi" target="_blank" class="insta-btn">
+Follow on Instagram
+</a>
+</section>
+
+<footer>
+<p>© 2025 Sayed Tasleem Shah. All rights reserved.</p>
+</footer>
+
+<script>
+
+/* PRELOADER */
+window.addEventListener("load",()=>{
+document.getElementById("preloader").classList.add("hide");
 });
 
-const roles = [
-    "Cybersecurity Enthusiast",
-    "Junior Cybersecurity Specialist",
-    "IT Support Learner"
+/* SCROLL PROGRESS + NAVBAR EFFECT */
+window.addEventListener("scroll",()=>{
+let winScroll=document.documentElement.scrollTop;
+let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+document.getElementById("progressBar").style.width=(winScroll/height)*100+"%";
+
+document.getElementById("navbar")
+.classList.toggle("scrolled",window.scrollY>50);
+});
+
+/* MOBILE MENU */
+const btn=document.getElementById("menuBtn");
+const menu=document.getElementById("menu");
+btn.onclick=()=>{
+btn.classList.toggle("active");
+menu.classList.toggle("active");
+document.body.classList.toggle("menu-open");
+};
+
+/* CLOSE MENU ON LINK CLICK */
+document.querySelectorAll("#menu a").forEach(link=>{
+link.addEventListener("click",()=>{
+menu.classList.remove("active");
+btn.classList.remove("active");
+document.body.classList.remove("menu-open");
+});
+});
+
+/* TYPING EFFECT */
+const roles=[
+"Cybersecurity Enthusiast",
+"Junior Cybersecurity Specialist",
+"IT Support Learner"
 ];
 
-let r = 0, c = 0, del = false;
+let r=0,c=0,del=false;
 
-function typing() {
-    const t = roles[r];
-    document.getElementById("typing").textContent =
-        del ? t.substring(0, --c) : t.substring(0, ++c);
-    if (!del && c === t.length) { setTimeout(() => del = true, 1000); }
-    if (del && c === 0) { del = false; r = (r + 1) % roles.length; }
-    setTimeout(typing, del ? 70 : 110);
+function typing(){
+const t=roles[r];
+document.getElementById("typing").textContent=
+del?t.substring(0,--c):t.substring(0,++c);
+
+if(!del && c===t.length){
+setTimeout(()=>del=true,1000);
+}
+if(del && c===0){
+del=false;
+r=(r+1)%roles.length;
+}
+setTimeout(typing,del?60:100);
 }
 typing();
 
-ScrollReveal({
-    distance: "60px",
-    duration: 1400,
-    delay: 200,
-    reset: true
+/* REVEAL ANIMATION */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("active");
+}
 });
+},{threshold:.15});
 
-ScrollReveal().reveal(".reveal-top", { origin: "top" });
-ScrollReveal().reveal(".reveal-left", { origin: "left" });
-ScrollReveal().reveal(".reveal-right", { origin: "right" });
-ScrollReveal().reveal(".reveal-bottom", { origin: "bottom" });
+document.querySelectorAll(".reveal")
+.forEach(el=>observer.observe(el));
+
 </script>
+
+</body>
+</html>
