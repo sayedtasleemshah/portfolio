@@ -7,350 +7,315 @@
 <meta name="author" content="Sayed Tasleem Shah">
 <title>Sayed Tasleem Shah | Cybersecurity Portfolio</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-
 /* ================= ROOT ================= */
-:root{
---bg-main:#0f172a;
---bg-dark:#020617;
---bg-card:#1e293b;
---accent:#38bdf8;
---text-main:#e5e7eb;
---text-soft:#cbd5f5;
---transition:all .35s ease;
+:root {
+    --bg-main: #0f172a;
+    --bg-dark: #020617;
+    --bg-card: rgba(30, 41, 59, 0.7);
+    --accent: #38bdf8;
+    --text-main: #e5e7eb;
+    --text-soft: #94a3b8;
+    --transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:system-ui,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-html{scroll-behavior:smooth;}
+html { scroll-behavior: smooth; }
 
-body{
-background:var(--bg-main);
-color:var(--text-main);
-overflow-x:hidden;
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
 /* =============== PRELOADER =============== */
-#preloader{
-position:fixed;
-inset:0;
-background:#020617;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:2000;
-transition:.6s ease;
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    transition: .6s ease;
 }
 
-.loader{
-width:45px;
-height:45px;
-border:4px solid #1e293b;
-border-top:4px solid var(--accent);
-border-radius:50%;
-animation:spin 1s linear infinite;
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #1e293b;
+    border-top: 3px solid var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin{
-to{transform:rotate(360deg);}
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-#preloader.hide{
-opacity:0;
-visibility:hidden;
-}
+#preloader.hide { opacity: 0; visibility: hidden; }
 
 /* =============== PROGRESS BAR =============== */
-#progressBar{
-position:fixed;
-top:0;
-left:0;
-height:4px;
-background:var(--accent);
-width:0%;
-z-index:1500;
+#progressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent);
+    width: 0%;
+    z-index: 1500;
+    box-shadow: 0 0 10px var(--accent);
 }
 
 /* =============== NAVBAR =============== */
-nav{
-position:fixed;
-width:100%;
-top:0;
-z-index:1000;
-transition:var(--transition);
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
 }
 
-nav.scrolled{
-background:rgba(2,6,23,.7);
-backdrop-filter:blur(12px);
-box-shadow:0 8px 25px rgba(0,0,0,.5);
+nav.scrolled {
+    background: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.nav-wrap{
-display:flex;
-justify-content:space-between;
-align-items:center;
-max-width:1100px;
-margin:auto;
-padding:14px 20px;
+.nav-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 25px;
 }
 
-.nav-logo{
-color:var(--accent);
-font-weight:700;
+.nav-logo {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
 }
 
-nav ul{
-display:flex;
-gap:25px;
-list-style:none;
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
 }
 
-nav a{
-color:var(--accent);
-text-decoration:none;
-font-weight:600;
-position:relative;
+nav a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
 }
 
-nav a::after{
-content:"";
-position:absolute;
-left:0;
-bottom:-4px;
-width:0;
-height:2px;
-background:var(--accent);
-transition:.3s;
+nav a:hover { color: var(--accent); }
+
+/* =============== MOBILE MENU =============== */
+.menu-btn { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+.menu-btn span { width: 25px; height: 2px; background: var(--accent); transition: 0.3s; }
+
+@media(max-width: 768px) {
+    .menu-btn { display: flex; }
+    nav ul {
+        position: fixed;
+        top: 0; right: -100%; height: 100vh; width: 70%;
+        background: var(--bg-dark);
+        flex-direction: column; align-items: center; justify-content: center;
+        transition: 0.4s ease;
+    }
+    nav ul.active { right: 0; }
 }
 
-nav a:hover::after,
-nav a.active::after{
-width:100%;
+/* =============== HERO SECTION =============== */
+header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
 }
 
-/* =============== HAMBURGER =============== */
-.menu-btn{
-display:none;
-flex-direction:column;
-gap:5px;
-cursor:pointer;
+.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    padding: 5px;
+    margin-bottom: 25px;
+    object-fit: cover;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
 }
 
-.menu-btn span{
-width:26px;
-height:3px;
-background:var(--accent);
-transition:.3s;
+header h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 10px;
 }
 
-.menu-btn.active span:nth-child(1){
-transform:rotate(45deg) translate(5px,5px);
-}
-.menu-btn.active span:nth-child(2){
-opacity:0;
-}
-.menu-btn.active span:nth-child(3){
-transform:rotate(-45deg) translate(6px,-6px);
+.typing {
+    font-size: 1.2rem;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    min-height: 30px;
 }
 
-@media(max-width:768px){
-nav ul{
-position:fixed;
-top:0;
-right:-100%;
-height:100vh;
-width:260px;
-background:var(--bg-dark);
-flex-direction:column;
-align-items:center;
-justify-content:center;
-transition:.4s ease;
-}
-nav ul.active{right:0;}
-.menu-btn{display:flex;}
-body.menu-open{overflow:hidden;}
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 35px;
+    background: var(--accent);
+    color: #020617;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transition);
 }
 
-/* =============== HEADER =============== */
-header{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding-top:90px;
-background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#1e3a8a);
-background-size:400% 400%;
-animation:gradientMove 12s ease infinite;
-}
-
-@keyframes gradientMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
-.profile-img{
-width:160px;
-height:160px;
-border-radius:50%;
-border:4px solid var(--accent);
-margin-bottom:22px;
-transition:var(--transition);
-}
-
-.profile-img:hover{
-transform:scale(1.05);
-}
-
-header h1{
-font-size:42px;
-}
-
-.typing{
-margin-top:10px;
-font-size:18px;
-color:var(--text-soft);
-min-height:24px;
-}
-
-.btn{
-display:inline-block;
-margin-top:18px;
-padding:12px 28px;
-background:var(--accent);
-color:#000;
-border-radius:30px;
-text-decoration:none;
-font-weight:700;
-transition:var(--transition);
-}
-
-.btn:hover{
-transform:translateY(-4px);
-box-shadow:0 10px 25px rgba(0,0,0,.4);
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
 }
 
 /* =============== SECTIONS =============== */
-section{
-padding:90px 20px;
-max-width:1050px;
-margin:auto;
+section {
+    padding: 100px 25px;
+    max-width: 1100px;
+    margin: auto;
 }
 
-h2{
-text-align:center;
-font-size:30px;
-margin-bottom:35px;
-color:var(--accent);
+h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
+
+h2 i { font-size: 1.8rem; opacity: 0.8; }
 
 /* =============== SKILLS =============== */
-.skills-box{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:16px;
+.skills-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
-.skills-box span{
-background:var(--bg-card);
-padding:12px 24px;
-border-radius:30px;
-transition:var(--transition);
+.skills-box span {
+    background: var(--bg-card);
+    padding: 12px 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
 }
 
-.skills-box span:hover{
-transform:translateY(-4px);
+.skills-box span:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    color: var(--accent);
 }
 
 /* =============== PROJECTS =============== */
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:22px;
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
 
-.project-card{
-background:var(--bg-card);
-padding:28px;
-border-radius:18px;
-transition:var(--transition);
+.project-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    padding: 35px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
 }
 
-.project-card:hover{
-transform:translateY(-6px);
-box-shadow:0 15px 35px rgba(0,0,0,.5);
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* =============== SOCIAL =============== */
-.socials{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
+.project-card i {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 20px;
 }
 
-.socials a{
-padding:10px 22px;
-border-radius:25px;
-background:var(--bg-card);
-color:var(--accent);
-text-decoration:none;
-transition:var(--transition);
-}
-
-.socials a:hover{
-transform:translateY(-4px);
+.project-card a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 15px;
 }
 
 /* =============== CONTACT =============== */
-.contact p{
-text-align:center;
-margin:8px 0;
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
 }
 
-.insta-btn{
-display:inline-block;
-margin-top:15px;
-padding:11px 26px;
-background:#E1306C;
-color:white;
-border-radius:30px;
-text-decoration:none;
-transition:var(--transition);
+.contact-item {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 15px;
 }
 
-.insta-btn:hover{
-transform:translateY(-4px);
+.insta-btn {
+    display: block;
+    max-width: 250px;
+    margin: 30px auto;
+    padding: 12px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
 }
 
 /* =============== FOOTER =============== */
-footer{
-text-align:center;
-padding:22px;
-background:var(--bg-dark);
+footer {
+    text-align: center;
+    padding: 40px;
+    background: var(--bg-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* =============== REVEAL =============== */
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:1s ease;
+/* =============== REVEAL ANIMATION =============== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s ease-out;
 }
 
-.reveal.active{
-opacity:1;
-transform:translateY(0);
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
-
 </style>
 </head>
 
@@ -360,164 +325,147 @@ transform:translateY(0);
 <div id="progressBar"></div>
 
 <nav id="navbar">
-<div class="nav-wrap">
-<div class="nav-logo">Tasleem Kazmi</div>
-
-<div class="menu-btn" id="menuBtn">
-<span></span><span></span><span></span>
-</div>
-
-<ul id="menu">
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</div>
+    <div class="nav-wrap">
+        <div class="nav-logo">TASLEEM KAZMI</div>
+        <div class="menu-btn" id="menuBtn">
+            <span></span><span></span><span></span>
+        </div>
+        <ul id="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
 </nav>
 
 <header id="home" class="reveal">
-<img src="profile.jpg" class="profile-img" alt="Sayed Tasleem Shah">
-<h1>Sayed Tasleem Shah</h1>
-<div class="typing" id="typing"></div>
-<a href="resume.pdf" class="btn" download>Download Resume</a>
+    <img src="profile.jpg" class="profile-img" alt="Sayed Tasleem Shah">
+    <h1>Sayed Tasleem Shah</h1>
+    <div class="typing" id="typing"></div>
+    <div style="display: flex; gap: 15px;">
+        <a href="resume.pdf" class="btn" download><i class="fas fa-download"></i> Resume</a>
+        <a href="#contact" class="btn" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">Hire Me</a>
+    </div>
 </header>
 
-<section id="about" class="about reveal">
-<h2>About Me</h2>
-<p style="text-align:center;max-width:800px;margin:auto;">
-Cybersecurity enthusiast focused on ethical hacking,
-networking fundamentals, and system defense.
-</p>
+<section id="about" class="reveal">
+    <h2><i class="fas fa-user-shield"></i> About Me</h2>
+    <p style="text-align:center; max-width:800px; margin:auto; font-size: 1.1rem; color: var(--text-soft);">
+        As a Cybersecurity enthusiast, I specialize in identifying digital vulnerabilities and building robust network defenses. 
+        Currently focused on Ethical Hacking, Linux administration, and securing IT infrastructures.
+    </p>
 </section>
 
 <section id="skills" class="reveal">
-<h2>Skills</h2>
-<div class="skills-box">
-<span>Cybersecurity Basics</span>
-<span>IT Support</span>
-<span>Networking</span>
-<span>Linux</span>
-<span>Photography</span>
-<span>Video Editing</span>
-</div>
+    <h2><i class="fas fa-bolt"></i> Technical Arsenal</h2>
+    <div class="skills-box">
+        <span><i class="fas fa-user-secret"></i> Cybersecurity Basics</span>
+        <span><i class="fas fa-headset"></i> IT Support</span>
+        <span><i class="fas fa-network-wired"></i> Networking</span>
+        <span><i class="fab fa-linux"></i> Linux Admin</span>
+        <span><i class="fas fa-camera"></i> Photography</span>
+        <span><i class="fas fa-video"></i> Video Editing</span>
+    </div>
 </section>
 
 <section id="projects" class="reveal">
-<h2>Projects</h2>
-<div class="projects">
-<div class="project-card">
-<h4>Network Scanner Security Analysis</h4>
-<p>Problem-solving and analytical thinking</p>
-  <a href="https://github.com/sayedtasleemshah/Network-Scanner-Security-Analysis.git">Visit</a>
-</div>
-<div class="project-card">
-<h3>Portfolio Website</h3>
-<p>Responsive professional portfolio.</p>
-</div>
-<div class="project-card">
-<h3>Networking Lab</h3>
-<p>Hands on routing and troubleshooting.</p>
-</div>
-</div>
+    <h2><i class="fas fa-code"></i> Featured Work</h2>
+    <div class="projects">
+        <div class="project-card">
+            <i class="fas fa-terminal"></i>
+            <h4>Network Security Analysis</h4>
+            <p>Performed vulnerability scanning and traffic analysis using Python and Nmap.</p>
+            <a href="https://github.com/sayedtasleemshah/Network-Scanner-Security-Analysis.git" target="_blank">
+                VIEW REPOSITORY <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+        <div class="project-card">
+            <i class="fas fa-laptop-code"></i>
+            <h4>Modern Portfolio</h4>
+            <p>A responsive, high-performance portfolio built with HTML, CSS, and GSAP-like animations.</p>
+        </div>
+        <div class="project-card">
+            <i class="fas fa-server"></i>
+            <h4>Networking Lab</h4>
+            <p>Designed and simulated complex network topologies using Cisco Packet Tracer.</p>
+        </div>
+    </div>
 </section>
 
-<section class="reveal">
-<h2>Profiles</h2>
-<div class="socials">
-<a href="https://github.com/sayedtasleemshah" target="_blank">GitHub</a>
-<a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank">LinkedIn</a>
-<a href="resume.pdf" download>Resume</a>
-</div>
-</section>
-
-<section id="contact" class="contact reveal">
-<h2>Contact</h2>
-<p>Email: taslymkazmi@gmail.com</p>
-<p>WhatsApp: 03059873511</p>
-<p>Location: Hayatabad, Pakistan</p>
-<a href="https://www.instagram.com/taslymkazmi" target="_blank" class="insta-btn">
-Follow on Instagram
-</a>
+<section id="contact" class="reveal">
+    <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+    <div class="contact-grid">
+        <div class="contact-item">
+            <i class="fas fa-at" style="color:var(--accent)"></i>
+            <p>taslymkazmi@gmail.com</p>
+        </div>
+        <div class="contact-item">
+            <i class="fab fa-whatsapp" style="color:var(--accent)"></i>
+            <p>03059873511</p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt" style="color:var(--accent)"></i>
+            <p>Hayatabad, Pakistan</p>
+        </div>
+    </div>
+    <a href="https://www.instagram.com/taslymkazmi" target="_blank" class="insta-btn">
+        <i class="fab fa-instagram"></i> Follow on Instagram
+    </a>
 </section>
 
 <footer>
-<p>© 2025 Sayed Tasleem Shah. All rights reserved.</p>
+    <p>© 2025 Sayed Tasleem Shah | Security Focused Portfolio</p>
+    <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px;">
+        <a href="https://github.com/sayedtasleemshah" target="_blank" style="color:var(--text-soft)"><i class="fab fa-github fa-lg"></i></a>
+        <a href="https://linkedin.com/in/sayed-tasleem-shah-342940389" target="_blank" style="color:var(--text-soft)"><i class="fab fa-linkedin fa-lg"></i></a>
+    </div>
 </footer>
 
 <script>
-
 /* PRELOADER */
 window.addEventListener("load",()=>{
-document.getElementById("preloader").classList.add("hide");
+    setTimeout(() => {
+        document.getElementById("preloader").classList.add("hide");
+    }, 500);
 });
 
 /* SCROLL PROGRESS + NAVBAR EFFECT */
 window.addEventListener("scroll",()=>{
-let winScroll=document.documentElement.scrollTop;
-let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-document.getElementById("progressBar").style.width=(winScroll/height)*100+"%";
-
-document.getElementById("navbar")
-.classList.toggle("scrolled",window.scrollY>50);
+    let winScroll = document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById("progressBar").style.width = (winScroll / height) * 100 + "%";
+    document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50);
 });
 
 /* MOBILE MENU */
-const btn=document.getElementById("menuBtn");
-const menu=document.getElementById("menu");
-btn.onclick=()=>{
-btn.classList.toggle("active");
-menu.classList.toggle("active");
-document.body.classList.toggle("menu-open");
+const btn = document.getElementById("menuBtn");
+const menu = document.getElementById("menu");
+btn.onclick = () => {
+    menu.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
 };
 
-/* CLOSE MENU ON LINK CLICK */
-document.querySelectorAll("#menu a").forEach(link=>{
-link.addEventListener("click",()=>{
-menu.classList.remove("active");
-btn.classList.remove("active");
-document.body.classList.remove("menu-open");
-});
-});
-
 /* TYPING EFFECT */
-const roles=[
-"Cybersecurity Enthusiast",
-"Junior Cybersecurity Specialist",
-"IT Support Learner"
-];
-
-let r=0,c=0,del=false;
-
+const roles = ["Cybersecurity Enthusiast", "Ethical Hacker in Training", "IT Support Specialist"];
+let r=0, c=0, del=false;
 function typing(){
-const t=roles[r];
-document.getElementById("typing").textContent=
-del?t.substring(0,--c):t.substring(0,++c);
-
-if(!del && c===t.length){
-setTimeout(()=>del=true,1000);
-}
-if(del && c===0){
-del=false;
-r=(r+1)%roles.length;
-}
-setTimeout(typing,del?60:100);
+    const t = roles[r];
+    document.getElementById("typing").textContent = del ? t.substring(0, --c) : t.substring(0, ++c);
+    if(!del && c === t.length) setTimeout(() => del = true, 1500);
+    else if(del && c === 0) { del = false; r = (r + 1) % roles.length; }
+    setTimeout(typing, del ? 50 : 100);
 }
 typing();
 
 /* REVEAL ANIMATION */
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("active");
-}
-});
-},{threshold:.15});
-
-document.querySelectorAll(".reveal")
-.forEach(el=>observer.observe(el));
-
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add("active");
+    });
+}, {threshold: 0.1});
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 </script>
 
 </body>
